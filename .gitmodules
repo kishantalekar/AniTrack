@@ -1,0 +1,3 @@
+[submodule "ani-track-fast-api"]
+	path = ani-track-fast-api
+	url = https://github.com/kishantalekar/ani-track-fast-api
