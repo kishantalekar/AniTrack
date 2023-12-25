@@ -3,6 +3,7 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  Linking,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,12 +19,17 @@ import {
   SPACING,
 } from '../theme/theme';
 import {AntDesignIcon, IoniconsIcon} from './CustomIcon';
+import {SearchUrl} from '../api/api';
 
 const screenWidth = Dimensions.get('window').width;
 const SpotLight = ({navigation}: any) => {
   const flatlistRef = useRef<any>();
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // useEffect(() => {
+
+  // },[])
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -50,6 +56,17 @@ const SpotLight = ({navigation}: any) => {
   });
 
   const renderItem = ({item}: any) => {
+    const handleRedirect = (url: string) => {
+      url = url.substring(1);
+      const searchUrl = SearchUrl(url);
+      Linking.openURL(searchUrl)
+        .then(() => {
+          console.log(`Opened: ${url}`);
+        })
+        .catch(err => {
+          console.error(`Error opening ${url}: ${err}`);
+        });
+    };
     return (
       <View style={styles.imagecontainer}>
         <ImageBackground
@@ -65,7 +82,9 @@ const SpotLight = ({navigation}: any) => {
               <Text style={styles.name}>{item.name}</Text>
             </View>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.watchNowButton}>
+              <TouchableOpacity
+                style={styles.watchNowButton}
+                onPress={() => handleRedirect(item?.ur)}>
                 <AntDesignIcon
                   name={'play'}
                   size={FONTSIZE.size_16}

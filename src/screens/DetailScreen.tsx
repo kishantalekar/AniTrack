@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  Linking,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -8,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {getAnimeByUrl} from '../api/api';
+import {SearchUrl, getAnimeByUrl} from '../api/api';
 import ImageBackgroundInfo from '../components/ImageBackgroundInfo';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {
@@ -78,6 +79,16 @@ const DetailScreen = ({navigation, route}: any) => {
       console.log(error);
     }
   };
+  const handleRedirect = () => {
+    const searchUrl = SearchUrl(url);
+    Linking.openURL(searchUrl)
+      .then(() => {
+        console.log(`Opened: ${url}`);
+      })
+      .catch(err => {
+        console.error(`Error opening ${url}: ${err}`);
+      });
+  };
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -132,7 +143,9 @@ const DetailScreen = ({navigation, route}: any) => {
           </View>
 
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.watchNowButton}>
+            <TouchableOpacity
+              style={styles.watchNowButton}
+              onPress={handleRedirect}>
               <AntDesignIcon
                 name={'play'}
                 color={styles.icon.color}
@@ -141,13 +154,24 @@ const DetailScreen = ({navigation, route}: any) => {
               <Text style={styles.buttonText}>Watch Now</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.addToListButton}>
+            <TouchableOpacity
+              style={[
+                styles.addToListButton,
+                {
+                  backgroundColor: addToFav
+                    ? COLORS.champagneMist
+                    : COLORS.primaryWhiteHex,
+                },
+              ]}
+              onPress={handleAddToList}>
               <AntDesignIcon
-                name={'plus'}
+                name={addToFav ? 'minus' : 'plus'}
                 color={styles.icon.color}
                 size={styles.icon.fontSize}
               />
-              <Text style={styles.buttonText}>Add to List</Text>
+              <Text style={styles.buttonText}>
+                {addToFav ? 'Remove from List' : 'Add to List'}
+              </Text>
             </TouchableOpacity>
           </View>
 

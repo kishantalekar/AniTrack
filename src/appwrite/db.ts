@@ -164,7 +164,7 @@ export const getAllFavorites = async (user_id: string) => {
     // Return an array of favorite items
     return favorites.documents;
   } catch (error) {
-    console.error('Error getting all favorites:', error);
+    // console.error('Error getting all favorites:', error);
     throw error;
   }
 };

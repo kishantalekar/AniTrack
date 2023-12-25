@@ -22,6 +22,7 @@ import {
   MaterialCommunityIconsIcons,
 } from '../components/CustomIcon';
 import useStore from '../store/store';
+import Header from '../components/Header';
 
 const ProfileScreen = ({navigation}: any) => {
   // const [user, setUser] = useState<any>();
@@ -60,6 +61,7 @@ const ProfileScreen = ({navigation}: any) => {
         paddingHorizontal: SPACING.space_20,
       }}>
       <StatusBar backgroundColor={COLORS.primaryblack} />
+      <Header title={'Profile'} handleClick={() => navigation.push('search')} />
       {Object.keys(user).length > 0 ? (
         <View style={{marginTop: 100}}>
           <View

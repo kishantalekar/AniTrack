@@ -13,6 +13,11 @@ from getScheduleList import getSchedules
 app = FastAPI()
 
 
+@app.get('/')
+def getRoot():
+    return {"for more info go to your yourserverurl/docs"}
+
+
 @app.get('/trending')
 def get_trending():
     return {"trending_data": getTrending()}

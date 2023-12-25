@@ -79,7 +79,7 @@ const ScheduleScreen = ({navigation}: any) => {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={{maxHeight: 100, marginTop: SPACING.space_18 + 10}}>
+            style={{maxHeight: 100, marginTop: SPACING.space_18 + 60}}>
             <View
               style={{
                 flexDirection: 'row',

@@ -19,6 +19,7 @@ import FeaturedRow from '../components/FeaturedRow';
 import {featured_data} from '../data';
 import HomeScreenSkeleton from '../components/skeletons/HomeScreenSkeleton';
 import SpotLight from '../components/SpotLight';
+import Header from '../components/Header';
 const HomeScreen = ({navigation}: any) => {
   // const trending_data = useStore((state: any) => state.trending_data);
   const [trending_data, setTrendingData] = useState<any>([]);
@@ -44,6 +45,7 @@ const HomeScreen = ({navigation}: any) => {
   return (
     <View style={styles.ScreenContainer}>
       <StatusBar translucent backgroundColor="transparent" />
+      <Header handleClick={() => navigation.push('profile')} />
       {loading ? (
         <HomeScreenSkeleton />
       ) : (

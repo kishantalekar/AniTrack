@@ -29,7 +29,7 @@ const FavouriteScreen = ({navigation}: any) => {
       setFavourites(data);
       // console.log(data);
     } catch (error) {
-      console.error('Error fetching favorites:', error);
+      console.log('Error fetching favorites:', error);
     }
   };
   useFocusEffect(
@@ -57,7 +57,7 @@ const FavouriteScreen = ({navigation}: any) => {
         gap: SPACING.space_20,
       }}>
       <StatusBar backgroundColor={COLORS.primaryblack} />
-      <Header title={'My List'} />
+      <Header title={'My List'} handleClick={() => navigation.push('search')} />
       {favourites && favourites.length > 0 ? (
         <FlatList
           numColumns={2}
@@ -71,6 +71,7 @@ const FavouriteScreen = ({navigation}: any) => {
             gap: SPACING.space_18,
             marginHorizontal: 10,
           }}
+          style={{marginTop: 60}}
           renderItem={({item}: any) => (
             <TouchableOpacity
               onPress={() => {

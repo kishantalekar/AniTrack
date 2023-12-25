@@ -10,6 +10,9 @@ const Header = ({title, handleClick}: any) => {
         flexDirection: 'row',
         alignItems: 'center',
         marginRight: SPACING.space_20,
+        position: 'absolute',
+        top: 40,
+        zIndex: 999,
       }}>
       <View
         style={{
@@ -17,11 +20,13 @@ const Header = ({title, handleClick}: any) => {
           overflow: 'hidden',
           alignItems: 'center',
           flex: 1,
+          gap: SPACING.space_20,
+          marginLeft: 10,
         }}>
         <View>
           <Image
             source={require('../assets/app_images/logo.png')}
-            style={{height: 50, width: 50}}
+            style={{height: 25, width: 25}}
           />
         </View>
 
